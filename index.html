@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baby Boy Reveal Puzzle</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8fbff;
+      --ink: #243142;
+      --muted: #667486;
+      --panel: #ffffff;
+      --line: #d9e5f2;
+      --blue: #5b9fe8;
+      --blue-deep: #2e6fb2;
+      --mint: #70bea6;
+      --gold: #c99a44;
+      --rose: #e7a7b0;
+      --shadow: 0 22px 60px rgba(36, 49, 66, 0.16);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 12% 14%, rgba(91, 159, 232, 0.22), transparent 26rem),
+        radial-gradient(circle at 88% 16%, rgba(112, 190, 166, 0.19), transparent 22rem),
+        radial-gradient(circle at 72% 92%, rgba(201, 154, 68, 0.14), transparent 24rem),
+        linear-gradient(145deg, #f8fbff, #fff9f1);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    button {
+      font: inherit;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .phone {
+      width: min(430px, 100%);
+      min-height: min(820px, calc(100vh - 36px));
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: relative;
+      overflow: hidden;
+      border: 10px solid #202733;
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)),
+        radial-gradient(circle at 20% 18%, rgba(91, 159, 232, 0.18), transparent 16rem),
+        radial-gradient(circle at 80% 30%, rgba(112, 190, 166, 0.16), transparent 14rem),
+        linear-gradient(160deg, #fafdff, #f4fbff 54%, #fff8ed);
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(90deg, rgba(36, 49, 66, 0.045) 1px, transparent 1px),
+        linear-gradient(rgba(36, 49, 66, 0.045) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 18px 8px;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--mint));
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .status {
+      border-radius: 999px;
+      padding: 7px 10px;
+      border: 1px solid rgba(36, 49, 66, 0.09);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .screen {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      align-content: center;
+      gap: 18px;
+      padding: 12px 18px 22px;
+      min-height: 0;
+    }
+
+    .intro,
+    .reveal {
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      gap: 16px;
+      padding: 22px 10px;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      color: var(--ink);
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 10ch;
+      font-size: clamp(38px, 12vw, 56px);
+      line-height: 0.96;
+    }
+
+    h2 {
+      max-width: 12ch;
+      font-size: clamp(32px, 9vw, 46px);
+      line-height: 1.02;
+    }
+
+    .copy {
+      max-width: 30ch;
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .primary,
+    .secondary {
+      min-height: 48px;
+      min-width: 190px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .primary {
+      background: var(--ink);
+      color: #fff;
+      box-shadow: 0 14px 28px rgba(36, 49, 66, 0.18);
+    }
+
+    .secondary {
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .baby-hero {
+      width: min(210px, 74vw);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.62)),
+        linear-gradient(135deg, rgba(91, 159, 232, 0.2), rgba(112, 190, 166, 0.16));
+      border: 1px solid var(--line);
+    }
+
+    .baby-hero svg,
+    .baby-final svg {
+      width: 78%;
+      height: 78%;
+      display: block;
+    }
+
+    .game {
+      display: none;
+      gap: 14px;
+      align-content: start;
+      padding-top: 2px;
+    }
+
+    .game.is-active {
+      display: grid;
+    }
+
+    .board-wrap {
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+    }
+
+    .board {
+      width: min(336px, calc(100vw - 72px));
+      aspect-ratio: 3 / 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 6px;
+      padding: 6px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.68);
+      box-shadow: 0 18px 38px rgba(36, 49, 66, 0.11);
+    }
+
+    .slot,
+    .piece {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .slot {
+      border: 1px dashed rgba(46, 111, 178, 0.34);
+      background:
+        linear-gradient(135deg, rgba(91, 159, 232, 0.08), rgba(112, 190, 166, 0.06));
+    }
+
+    .slot.is-hover {
+      border-color: var(--blue);
+      background: rgba(91, 159, 232, 0.14);
+    }
+
+    .piece {
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(36, 49, 66, 0.12);
+      background-image: var(--baby-image);
+      background-size: 300% 200%;
+      box-shadow: 0 10px 18px rgba(36, 49, 66, 0.1);
+      cursor: grab;
+      touch-action: none;
+    }
+
+    .piece:active {
+      cursor: grabbing;
+    }
+
+    .piece.is-selected {
+      outline: 3px solid rgba(91, 159, 232, 0.42);
+      outline-offset: 2px;
+    }
+
+    .piece.is-locked {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      box-shadow: none;
+      cursor: default;
+    }
+
+    .piece.is-locked::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .tray {
+      width: min(336px, calc(100vw - 72px));
+      min-height: 156px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      justify-self: center;
+      padding: 8px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(217, 229, 242, 0.8);
+    }
+
+    .tray .piece {
+      aspect-ratio: 3 / 2;
+    }
+
+    .progress {
+      width: min(336px, calc(100vw - 72px));
+      justify-self: center;
+      display: grid;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .progress-line {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(36, 49, 66, 0.1);
+    }
+
+    .progress-line span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--mint), var(--gold));
+      transition: width 180ms ease;
+    }
+
+    .message {
+      min-height: 20px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .reveal {
+      display: none;
+      align-self: center;
+    }
+
+    .reveal.is-active {
+      display: grid;
+    }
+
+    .baby-final {
+      width: min(230px, 72vw);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.72)),
+        linear-gradient(135deg, rgba(91, 159, 232, 0.2), rgba(112, 190, 166, 0.12));
+      box-shadow: 0 18px 38px rgba(36, 49, 66, 0.11);
+    }
+
+    .confetti {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .confetti i {
+      position: absolute;
+      width: 8px;
+      height: 14px;
+      border-radius: 3px;
+      opacity: 0;
+      animation: confetti 1200ms ease-out forwards;
+    }
+
+    @keyframes confetti {
+      0% { transform: translateY(20px) rotate(0deg); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-220px) rotate(320deg); opacity: 0; }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .no-js .js-only {
+      display: none !important;
+    }
+
+    .no-js .no-js-note {
+      display: grid;
+    }
+
+    .no-js-note {
+      display: none;
+      justify-items: center;
+      text-align: center;
+      gap: 12px;
+      padding: 28px 16px;
+    }
+
+    @media (max-width: 420px) {
+      body {
+        padding: 0;
+      }
+
+      .phone {
+        min-height: 100vh;
+        width: 100%;
+        border: 0;
+        border-radius: 0;
+      }
+
+      .screen {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .board,
+      .tray,
+      .progress {
+        width: min(344px, calc(100vw - 28px));
+      }
+    }
+  </style>
+</head>
+<body class="no-js">
+  <main class="phone">
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">B</span>
+        <span>Baby Reveal Puzzle</span>
+      </div>
+      <span class="status" id="statusText">6 pieces</span>
+    </header>
+
+    <section class="screen">
+      <section class="intro js-only" id="introScreen" aria-label="Game intro">
+        <p class="eyebrow">A tiny reveal</p>
+        <h1>Baby Puzzle</h1>
+        <div class="baby-hero" aria-hidden="true" id="heroBaby"></div>
+        <p class="copy">Place the six puzzle pieces to reveal the little surprise.</p>
+        <button type="button" class="primary" id="startButton">Start puzzle</button>
+      </section>
+
+      <section class="no-js-note" aria-label="Browser required">
+        <p class="eyebrow">Almost there</p>
+        <h2>Open in browser</h2>
+        <p class="copy">This puzzle needs a browser to run. Open the link in Safari, Chrome, or Edge.</p>
+      </section>
+
+      <section class="game js-only" id="gameScreen" aria-label="Baby reveal puzzle">
+        <div class="progress">
+          <span id="progressText">0 / 6 pieces placed</span>
+          <div class="progress-line" aria-hidden="true"><span id="progressFill"></span></div>
+        </div>
+        <div class="board-wrap">
+          <div class="board" id="board" aria-label="Puzzle board"></div>
+          <p class="message" id="messageText">Tap a piece, then tap its matching place.</p>
+        </div>
+        <div class="tray" id="tray" aria-label="Puzzle pieces"></div>
+      </section>
+
+      <section class="reveal js-only" id="revealScreen" aria-label="Baby reveal">
+        <p class="eyebrow">Baby reveal</p>
+        <h2>Congratulations, the baby is a boy!</h2>
+        <div class="baby-final" aria-hidden="true" id="finalBaby"></div>
+        <p class="copy">A little boy is on the way.</p>
+        <button type="button" class="secondary" id="againButton">Play again</button>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var babySvg =
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240">' +
+        '<defs>' +
+        '<linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#eff8ff"/><stop offset="1" stop-color="#d8ecff"/></linearGradient>' +
+        '<linearGradient id="blanket" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#68aef0"/><stop offset="1" stop-color="#2e75bd"/></linearGradient>' +
+        '<linearGradient id="skin" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffd7bf"/><stop offset="1" stop-color="#f2a982"/></linearGradient>' +
+        '</defs>' +
+        '<rect width="360" height="240" rx="28" fill="url(#bg)"/>' +
+        '<circle cx="300" cy="38" r="18" fill="#ffffff" opacity=".7"/><circle cx="56" cy="190" r="22" fill="#ffffff" opacity=".65"/>' +
+        '<path d="M96 157c23-51 84-78 138-54 40 18 59 60 44 101H83c0-15 4-31 13-47Z" fill="url(#blanket)"/>' +
+        '<path d="M99 160c46 29 102 42 169 37" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" opacity=".55"/>' +
+        '<circle cx="178" cy="96" r="50" fill="url(#skin)"/>' +
+        '<path d="M129 81c10-33 43-50 76-40 22 7 38 25 43 47-34-10-74-10-119-7Z" fill="#5b9fe8"/>' +
+        '<circle cx="158" cy="97" r="5" fill="#243142"/><circle cx="199" cy="97" r="5" fill="#243142"/>' +
+        '<path d="M168 121c9 8 19 8 29 0" fill="none" stroke="#a35a4f" stroke-width="5" stroke-linecap="round"/>' +
+        '<circle cx="141" cy="113" r="9" fill="#f3a8a8" opacity=".7"/><circle cx="215" cy="113" r="9" fill="#f3a8a8" opacity=".7"/>' +
+        '<path d="M132 56c22-22 58-24 83-8" fill="none" stroke="#2e75bd" stroke-width="10" stroke-linecap="round"/>' +
+        '<circle cx="119" cy="151" r="20" fill="#ffd7bf"/><circle cx="260" cy="165" r="18" fill="#ffd7bf"/>' +
+        '<path d="M116 35c-20 0-36 16-36 36s16 36 36 36c8 0 16-3 22-8" fill="none" stroke="#ffffff" stroke-width="6" opacity=".8"/>' +
+        '</svg>';
+
+      var babyData = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(babySvg);
+      var pieces = [];
+      var selectedPiece = null;
+      var placed = 0;
+      var rows = 2;
+      var cols = 3;
+      var total = rows * cols;
+      var els = {};
+
+      function byId(id) {
+        return document.getElementById(id);
+      }
+
+      function cacheEls() {
+        [
+          "heroBaby", "finalBaby", "introScreen", "gameScreen", "revealScreen",
+          "board", "tray", "messageText", "progressText", "progressFill",
+          "startButton", "againButton", "statusText", "confetti"
+        ].forEach(function (id) {
+          els[id] = byId(id);
+        });
+      }
+
+      function shuffle(items) {
+        var copy = items.slice();
+        for (var i = copy.length - 1; i > 0; i -= 1) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = copy[i];
+          copy[i] = copy[j];
+          copy[j] = temp;
+        }
+        return copy;
+      }
+
+      function pieceStyle(index) {
+        var col = index % cols;
+        var row = Math.floor(index / cols);
+        return {
+          x: (col * 50) + "%",
+          y: (row * 100) + "%"
+        };
+      }
+
+      function makePiece(index) {
+        var button = document.createElement("button");
+        var pos = pieceStyle(index);
+        button.type = "button";
+        button.className = "piece";
+        button.dataset.index = String(index);
+        button.setAttribute("aria-label", "Puzzle piece " + (index + 1));
+        button.style.setProperty("--baby-image", "url('" + babyData + "')");
+        button.style.backgroundPosition = pos.x + " " + pos.y;
+        button.draggable = true;
+        button.addEventListener("click", function () {
+          selectPiece(button);
+        });
+        button.addEventListener("dragstart", function (event) {
+          event.dataTransfer.setData("text/plain", String(index));
+          selectPiece(button);
+        });
+        return button;
+      }
+
+      function makeSlot(index) {
+        var slot = document.createElement("button");
+        slot.type = "button";
+        slot.className = "slot";
+        slot.dataset.index = String(index);
+        slot.setAttribute("aria-label", "Puzzle place " + (index + 1));
+        slot.addEventListener("click", function () {
+          if (selectedPiece) {
+            tryPlace(selectedPiece, slot);
+          }
+        });
+        slot.addEventListener("dragover", function (event) {
+          event.preventDefault();
+          slot.classList.add("is-hover");
+        });
+        slot.addEventListener("dragleave", function () {
+          slot.classList.remove("is-hover");
+        });
+        slot.addEventListener("drop", function (event) {
+          event.preventDefault();
+          slot.classList.remove("is-hover");
+          var index = event.dataTransfer.getData("text/plain");
+          var piece = els.tray.querySelector('.piece[data-index="' + index + '"]');
+          if (piece) {
+            tryPlace(piece, slot);
+          }
+        });
+        return slot;
+      }
+
+      function selectPiece(piece) {
+        if (piece.classList.contains("is-locked")) {
+          return;
+        }
+        if (selectedPiece) {
+          selectedPiece.classList.remove("is-selected");
+        }
+        selectedPiece = piece;
+        selectedPiece.classList.add("is-selected");
+        els.messageText.textContent = "Now tap where this piece belongs.";
+      }
+
+      function tryPlace(piece, slot) {
+        if (slot.children.length) {
+          els.messageText.textContent = "That spot is already filled.";
+          return;
+        }
+        if (piece.dataset.index !== slot.dataset.index) {
+          els.messageText.textContent = "Almost. Try another spot.";
+          return;
+        }
+        piece.classList.remove("is-selected");
+        piece.classList.add("is-locked");
+        piece.draggable = false;
+        slot.appendChild(piece);
+        selectedPiece = null;
+        placed += 1;
+        updateProgress();
+        els.messageText.textContent = "Nice. Keep going.";
+        if (placed === total) {
+          window.setTimeout(showReveal, 450);
+        }
+      }
+
+      function updateProgress() {
+        els.progressText.textContent = placed + " / " + total + " pieces placed";
+        els.progressFill.style.width = ((placed / total) * 100) + "%";
+      }
+
+      function buildBoard() {
+        els.board.innerHTML = "";
+        els.tray.innerHTML = "";
+        selectedPiece = null;
+        placed = 0;
+        pieces = [];
+        for (var i = 0; i < total; i += 1) {
+          els.board.appendChild(makeSlot(i));
+          pieces.push(makePiece(i));
+        }
+        shuffle(pieces).forEach(function (piece) {
+          els.tray.appendChild(piece);
+        });
+        updateProgress();
+        els.messageText.textContent = "Tap a piece, then tap its matching place.";
+      }
+
+      function showIntro() {
+        els.introScreen.classList.remove("hidden");
+        els.gameScreen.classList.remove("is-active");
+        els.revealScreen.classList.remove("is-active");
+        els.statusText.textContent = "6 pieces";
+      }
+
+      function startGame() {
+        buildBoard();
+        els.introScreen.classList.add("hidden");
+        els.gameScreen.classList.add("is-active");
+        els.revealScreen.classList.remove("is-active");
+        els.statusText.textContent = "Puzzle";
+      }
+
+      function showReveal() {
+        els.gameScreen.classList.remove("is-active");
+        els.revealScreen.classList.add("is-active");
+        els.statusText.textContent = "It's a boy";
+        burstConfetti();
+      }
+
+      function burstConfetti() {
+        var colors = ["#5b9fe8", "#70bea6", "#c99a44", "#ffffff", "#2e6fb2"];
+        els.confetti.innerHTML = "";
+        for (var i = 0; i < 44; i += 1) {
+          var bit = document.createElement("i");
+          bit.style.left = (8 + Math.random() * 84) + "%";
+          bit.style.bottom = (18 + Math.random() * 24) + "%";
+          bit.style.background = colors[i % colors.length];
+          bit.style.animationDelay = (Math.random() * 280) + "ms";
+          els.confetti.appendChild(bit);
+        }
+        window.setTimeout(function () {
+          els.confetti.innerHTML = "";
+        }, 1800);
+      }
+
+      function init() {
+        document.body.classList.remove("no-js");
+        document.body.classList.add("js");
+        cacheEls();
+        document.documentElement.style.setProperty("--baby-image", "url('" + babyData + "')");
+        els.heroBaby.innerHTML = babySvg;
+        els.finalBaby.innerHTML = babySvg;
+        els.startButton.addEventListener("click", startGame);
+        els.againButton.addEventListener("click", startGame);
+        showIntro();
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>
