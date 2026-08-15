@@ -26,15 +26,15 @@ The player taps **Start puzzle**, places six puzzle pieces in the matching slots
 Your game should then open at:
 
 ```text
-https://walid1301.github.io/game/
+https://playywithme.github.io/game/
 ```
 
 Or:
 
 ```text
-https://walid1301.github.io/game/game.html
+https://playywithme.github.io/game/game.html
 ```
 
 ## Etsy Note
 
-After GitHub Pages is enabled, update your PDF/QR code to point to the GitHub Pages URL.
+The PDF and QR code should point to the GitHub Pages URL above.
