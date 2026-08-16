@@ -11,7 +11,7 @@
   <main class="phone" aria-live="polite">
     <header class="topbar">
       <div class="brand">
-        <span class="brand-mark">B</span>
+        <span class="brand-mark" aria-hidden="true">+</span>
         <span>Play With Me</span>
       </div>
       <span class="status" id="statusText">4 pieces</span>
@@ -48,9 +48,9 @@
 
       <div class="reveal js-only" id="revealScreen">
         <p class="eyebrow">Surprise</p>
-        <h2 id="revealTitle">Congratulations — it's a boy! 💙</h2>
+        <h2 id="revealTitle">A little boy is on his way 💙</h2>
         <div class="reveal-art" id="finalArt"></div>
-        <button class="secondary" id="againButton" type="button">Play again</button>
+        <p class="closing">made with love</p>
       </div>
     </section>
 
@@ -59,11 +59,11 @@
 
   <script>
     const GAME_URL = "https://playywithme.github.io/game/boy/";
-    const REVEAL_MESSAGE = "Congratulations — it's a boy! 💙";
+    const REVEAL_MESSAGE = "A little boy is on his way 💙";
     window.GAME_CONFIG = {
       GAME_URL,
       VARIANT: "boy",
-      STATUS_LABEL: "It's a boy",
+      STATUS_LABEL: "Boy",
       REVEAL_MESSAGE,
       PUZZLE_IMAGE: "../assets/puzzle_green.svg",
       REVEAL_IMAGE: "../assets/boy.svg",

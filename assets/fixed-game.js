@@ -17,7 +17,7 @@
   function cacheEls() {
     [
       "introScreen", "gameScreen", "revealScreen", "board", "tray", "messageText",
-      "progressText", "progressFill", "startButton", "againButton", "statusText",
+      "progressText", "progressFill", "startButton", "statusText",
       "confetti", "revealTitle", "finalArt"
     ].forEach(function (id) {
       els[id] = byId(id);
@@ -33,6 +33,23 @@
       copy[j] = temp;
     }
     return copy;
+  }
+
+  function isDerangedOrder(items) {
+    return items.every(function (piece, position) {
+      return Number(piece.dataset.index) !== position;
+    });
+  }
+
+  function scramblePieces(items) {
+    var shuffled = shuffle(items);
+    for (var attempt = 0; attempt < 20 && !isDerangedOrder(shuffled); attempt += 1) {
+      shuffled = shuffle(items);
+    }
+    if (!isDerangedOrder(shuffled)) {
+      shuffled = items.slice(1).concat(items[0]);
+    }
+    return shuffled;
   }
 
   function pieceStyle(index) {
@@ -142,7 +159,7 @@
       els.board.appendChild(makeSlot(i));
       pieces.push(makePiece(i));
     }
-    shuffle(pieces).forEach(function (piece) {
+    scramblePieces(pieces).forEach(function (piece) {
       els.tray.appendChild(piece);
     });
     updateProgress();
@@ -169,7 +186,7 @@
     els.revealTitle.textContent = config.REVEAL_MESSAGE;
     els.finalArt.innerHTML = '<img src="' + config.REVEAL_IMAGE + '" alt="">';
     els.revealScreen.classList.add("is-active");
-    els.statusText.textContent = config.STATUS_LABEL;
+    els.statusText.textContent = config.STATUS_LABEL || "Surprise";
     burstConfetti();
   }
 
@@ -197,7 +214,6 @@
     document.documentElement.style.setProperty("--accent", config.ACCENT || "#7eac7e");
     document.documentElement.style.setProperty("--puzzle-image", "url('" + config.PUZZLE_IMAGE + "')");
     els.startButton.addEventListener("click", startGame);
-    els.againButton.addEventListener("click", startGame);
     showIntro();
   }
 

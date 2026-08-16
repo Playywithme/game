@@ -23,7 +23,7 @@ At the bottom of each file, edit the config constants:
 
 ```html
 const GAME_URL = "https://playywithme.github.io/game/boy/";
-const REVEAL_MESSAGE = "Congratulations — it's a boy! 💙";
+const REVEAL_MESSAGE = "A little boy is on his way 💙";
 ```
 
 Moving to a custom domain later only requires changing `GAME_URL` in the

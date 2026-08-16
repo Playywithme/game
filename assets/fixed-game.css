@@ -97,6 +97,7 @@ button {
   border-radius: 50%;
   background: linear-gradient(135deg, var(--green), var(--green-deep));
   color: #fff;
+  font-size: 18px;
   font-weight: 800;
 }
 
@@ -153,9 +154,9 @@ h1 {
 }
 
 h2 {
-  max-width: 13ch;
-  font-size: clamp(30px, 8.5vw, 44px);
-  line-height: 1.02;
+  max-width: 13.5ch;
+  font-size: clamp(33px, 10vw, 54px);
+  line-height: 0.98;
 }
 
 .copy {
@@ -340,7 +341,7 @@ h2 {
   width: 0%;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--green), var(--gold), var(--accent));
+  background: linear-gradient(90deg, var(--green), var(--gold), #9fbe94);
   transition: width 180ms ease;
 }
 
@@ -362,7 +363,7 @@ h2 {
 }
 
 .reveal-art {
-  width: min(230px, 72vw);
+  width: min(250px, 74vw);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -384,6 +385,14 @@ h2 {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+.closing {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
 }
 
 .confetti {
