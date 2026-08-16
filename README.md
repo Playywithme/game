@@ -1,40 +1,15 @@
-# Baby Boy Reveal Puzzle
+# Play With Me Puzzle
 
-A simple static baby boy reveal puzzle game.
+GitHub Pages wrapper for the hosted customizable puzzle game.
 
-The player taps **Start puzzle**, places six puzzle pieces in the matching slots, and sees the final reveal:
+## Public URLs
 
-> Congratulations, the baby is a boy!
+- Buyer customizer: `https://playywithme.github.io/game/customize.html`
+- Personalized game links: `https://playywithme.github.io/game/?c=<ENCODED>`
+- Older direct game path: `https://playywithme.github.io/game/game.html?c=<ENCODED>`
 
-## Files
+## How It Works
 
-- `index.html` - main page for GitHub Pages
-- `game.html` - same game file, useful if you want the URL to end in `/game.html`
-- `.nojekyll` - tells GitHub Pages to serve the files exactly as they are
+The GitHub Pages files are lightweight wrappers. They forward the visitor and the full query string to the hosted game/customizer.
 
-## Enable GitHub Pages
-
-1. Open this repository on GitHub.
-2. Go to **Settings**.
-3. Go to **Pages**.
-4. Under **Build and deployment**, choose:
-   - Source: **Deploy from a branch**
-   - Branch: **main**
-   - Folder: **/ root**
-5. Save.
-
-Your game should then open at:
-
-```text
-https://playywithme.github.io/game/
-```
-
-Or:
-
-```text
-https://playywithme.github.io/game/game.html
-```
-
-## Etsy Note
-
-The PDF and QR code should point to the GitHub Pages URL above.
+All personalization is stored in the URL parameter `c`, which is base64-url encoded JSON. There is no backend and no database.

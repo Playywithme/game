@@ -35,9 +35,16 @@
   </style>
 </head>
 <body>
-  <iframe src="https://proposal-game-walid-0728.walid-abouzoul.chatgpt.site/game.html" title="Let's Play With Me" allowfullscreen></iframe>
+  <iframe id="gameFrame" src="https://proposal-game-walid-0728.walid-abouzoul.chatgpt.site/game.html" title="Let's Play With Me" allowfullscreen></iframe>
   <noscript>
     <div class="fallback"><a href="https://proposal-game-walid-0728.walid-abouzoul.chatgpt.site/game.html">Start the game</a></div>
   </noscript>
+  <script>
+    (function () {
+      var base = "https://proposal-game-walid-0728.walid-abouzoul.chatgpt.site/game.html";
+      var frame = document.getElementById("gameFrame");
+      frame.src = base + window.location.search + window.location.hash;
+    })();
+  </script>
 </body>
 </html>
