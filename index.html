@@ -3,48 +3,85 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Let's Play With Me</title>
+  <title>Play With Me - Reveal Puzzles</title>
   <style>
-    html,
+    :root {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #223126;
+      background: #f7fbf3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      width: 100%;
-      height: 100%;
+      min-height: 100vh;
       margin: 0;
-      background: #f8fbff;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-      background: #f8fbff;
-    }
-
-    .fallback {
-      min-height: 100%;
       display: grid;
       place-items: center;
-      font-family: Arial, sans-serif;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(126, 172, 126, 0.24), transparent 24rem),
+        radial-gradient(circle at 84% 18%, rgba(181, 141, 66, 0.14), transparent 22rem),
+        linear-gradient(145deg, #f7fbf3, #fffaf2);
     }
 
-    .fallback a {
-      color: #1f2a44;
-      font-weight: 700;
+    main {
+      width: min(680px, 100%);
+      display: grid;
+      gap: 22px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(38px, 8vw, 64px);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 auto;
+      max-width: 44ch;
+      color: #637268;
+      line-height: 1.55;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    a {
+      min-height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: #223126;
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 14px 28px rgba(34, 49, 38, 0.16);
+    }
+
+    @media (max-width: 560px) {
+      .links {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <iframe id="gameFrame" src="https://proposal-game-walid-0728.walid-abouzoul.chatgpt.site/game.html" title="Let's Play With Me" allowfullscreen></iframe>
-  <noscript>
-    <div class="fallback"><a href="https://proposal-game-walid-0728.walid-abouzoul.chatgpt.site/game.html">Start the game</a></div>
-  </noscript>
-  <script>
-    (function () {
-      var base = "https://proposal-game-walid-0728.walid-abouzoul.chatgpt.site/game.html";
-      var frame = document.getElementById("gameFrame");
-      frame.src = base + window.location.search + window.location.hash;
-    })();
-  </script>
+  <main>
+    <h1>Play With Me</h1>
+    <p>Choose one fixed reveal puzzle. Each game uses the same neutral puzzle first, then reveals the surprise after the four pieces are placed.</p>
+    <nav class="links" aria-label="Reveal puzzle variants">
+      <a href="./boy/">Boy</a>
+      <a href="./girl/">Girl</a>
+      <a href="./twins/">Twins</a>
+    </nav>
+  </main>
 </body>
 </html>

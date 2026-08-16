@@ -1,15 +1,38 @@
-# Play With Me Puzzle
+# Play With Me Reveal Puzzles
 
-GitHub Pages wrapper for the hosted customizable puzzle game.
+Static GitHub Pages gender-reveal puzzle games.
 
-## Public URLs
+## Live Paths
 
-- Buyer customizer: `https://playywithme.github.io/game/customize.html`
-- Personalized game links: `https://playywithme.github.io/game/?c=<ENCODED>`
-- Older direct game path: `https://playywithme.github.io/game/game.html?c=<ENCODED>`
+- `https://playywithme.github.io/game/boy/`
+- `https://playywithme.github.io/game/girl/`
+- `https://playywithme.github.io/game/twins/`
 
-## How It Works
+Each variant is a separate folder with its own `index.html`. There is no backend,
+database, personalization form, query string, or URL-encoded data.
 
-The GitHub Pages files are lightweight wrappers. They forward the visitor and the full query string to the hosted game/customizer.
+## Editing
 
-All personalization is stored in the URL parameter `c`, which is base64-url encoded JSON. There is no backend and no database.
+Open the variant file you want to change:
+
+- `boy/index.html`
+- `girl/index.html`
+- `twins/index.html`
+
+At the bottom of each file, edit the config constants:
+
+```html
+const GAME_URL = "https://playywithme.github.io/game/boy/";
+const REVEAL_MESSAGE = "Congratulations — it's a boy! 💙";
+```
+
+Moving to a custom domain later only requires changing `GAME_URL` in the
+variant file and regenerating that variant's PDF link.
+
+## PDFs
+
+Static wrappers live in `pdfs/`. To regenerate them after changing a URL, run:
+
+```powershell
+python tools/create_fixed_variant_pdfs.py
+```

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Play With Me - Girl Reveal Puzzle</title>
+  <meta name="description" content="A tiny puzzle game with a surprise reveal.">
+  <link rel="stylesheet" href="../assets/fixed-game.css">
+</head>
+<body class="no-js">
+  <main class="phone" aria-live="polite">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">B</span>
+        <span>Play With Me</span>
+      </div>
+      <span class="status" id="statusText">4 pieces</span>
+    </header>
+
+    <section class="screen">
+      <div class="no-js-note">
+        <p class="eyebrow">Almost there</p>
+        <h1>Open in browser to play</h1>
+        <p class="copy">This preview cannot run the puzzle. Use the share button and open this file in Safari, Chrome, or Edge to unlock the surprise.</p>
+      </div>
+
+      <div class="intro js-only" id="introScreen">
+        <p class="eyebrow">A little game</p>
+        <h1>Let's Play</h1>
+        <div class="puzzle-hero">
+          <img src="../assets/puzzle_green.svg" alt="">
+        </div>
+        <p class="copy">Put the four pieces in place to unlock your surprise.</p>
+        <button class="primary" id="startButton" type="button">Start game</button>
+      </div>
+
+      <div class="game js-only" id="gameScreen">
+        <div class="progress">
+          <span id="progressText">0 / 4 pieces placed</span>
+          <div class="progress-line" aria-hidden="true"><span id="progressFill"></span></div>
+        </div>
+        <div class="board-wrap">
+          <div class="board" id="board" aria-label="Puzzle board"></div>
+          <p class="message" id="messageText">Tap a piece, then tap its matching place.</p>
+          <div class="tray" id="tray" aria-label="Puzzle pieces"></div>
+        </div>
+      </div>
+
+      <div class="reveal js-only" id="revealScreen">
+        <p class="eyebrow">Surprise</p>
+        <h2 id="revealTitle">Congratulations — it's a girl! 💗</h2>
+        <div class="reveal-art" id="finalArt"></div>
+        <button class="secondary" id="againButton" type="button">Play again</button>
+      </div>
+    </section>
+
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    const GAME_URL = "https://playywithme.github.io/game/girl/";
+    const REVEAL_MESSAGE = "Congratulations — it's a girl! 💗";
+    window.GAME_CONFIG = {
+      GAME_URL,
+      VARIANT: "girl",
+      STATUS_LABEL: "It's a girl",
+      REVEAL_MESSAGE,
+      PUZZLE_IMAGE: "../assets/puzzle_green.svg",
+      REVEAL_IMAGE: "../assets/girl.svg",
+      ACCENT: "#e58cab",
+      CONFETTI_COLORS: ["#e58cab", "#7eac7e", "#b58d42", "#ffffff"]
+    };
+  </script>
+  <script src="../assets/fixed-game.js"></script>
+</body>
+</html>
